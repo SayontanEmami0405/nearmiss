@@ -1,0 +1,9 @@
+<mvc:View controllerName="com.emami.nearmiss.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="Home" title="{i18n>title}" showHeader="false">
+        <content />
+    </Page>
+    
+    
+</mvc:View>

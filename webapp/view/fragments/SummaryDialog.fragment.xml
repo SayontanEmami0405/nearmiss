@@ -1,0 +1,170 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Label
+        text="Summary"
+        class="sapUiSmallMarginBegin sapUiSmallMarginTop textBold"
+        design="Bold"
+    />
+    <OverflowToolbar>
+        <DateRangeSelection
+            id="idDR"
+            width="15rem"
+            placeholder="Enter date range"
+            displayFormat="dd.MM.yyyy"
+            class="sapUiSmallMarginBegin"
+        />
+        <Button
+            press="onPressDRSearch"
+            icon="sap-icon://search"
+        />
+        <Button
+            press="onPressDRClear"
+            icon="sap-icon://clear-filter"
+        />
+
+        <!-- <Title
+            text="Pending with me"
+            design="Bold"
+        />
+        <CheckBox id="idPendingWithMe" /> -->
+
+        <ToolbarSpacer />
+        <SearchField
+            id="idSearchInit"
+            width="20rem"
+            liveChange="onFilterNMSummaryList"
+        />
+        <Button
+            text="Clear"
+            press="onPressClearNMSummary"
+        />
+        <!-- <Button 
+    text="Export Checklist" 
+    icon="sap-icon://excel-attachment" 
+    press="onExportToExcel"
+    type="Emphasized"
+/>
+<Button 
+    text="Export Summary" 
+    icon="sap-icon://excel-attachment" 
+    press="onExportToExcelSumm"
+    type="Emphasized"
+/> -->
+    </OverflowToolbar>
+    <Panel>
+        <ScrollContainer
+            horizontal="true"
+            vertical="true"
+            class="dynamicTable"
+        >
+            <Table
+                id="summarytableid"
+                items="{path: 'jsonNMSummaryModel>/'}" 
+                mode="None"
+                itemPress="onItemPress"
+                growing="true"
+                growingThreshold="20"
+                sticky="ColumnHeaders"
+            >
+                <columns>
+                <Column
+                        id="columnid9"
+                        width="8rem"
+                        hAlign="Center"
+                    >
+                        <Label
+                            text="NM Number"
+                            design="Bold"
+                        />
+                    </Column>
+                    <Column
+                        id="columnid1"
+                        width="8rem"
+                        hAlign="Center"
+                    >
+                        <Label
+                            text="Material"
+                            design="Bold"
+                        />
+                    </Column>
+                    <Column
+                        id="columnid2"
+                        width="6rem"
+                        hAlign="Center"
+                    >
+                        <Label
+                            text="Plant"
+                            design="Bold"
+                        />
+                    </Column>
+                    <Column
+                        id="columnid3"
+                        width="8rem"
+                        hAlign="Center"
+                    >
+                        <Label
+                            text="NM Date"
+                            design="Bold"
+                        />
+                    </Column>
+                    <Column
+                        id="columnid4"
+                        width="8rem"
+                        hAlign="Center"
+                    >
+                        <Label
+                            text="SKU"
+                            design="Bold"
+                        />
+                    </Column>
+                    <Column
+                        id="columnid5"
+                        width="7rem"
+                        hAlign="Center"
+                    >
+                       
+                        <Label
+                            text="Line"
+                            design="Bold"
+                        />
+                    </Column>
+                    <Column
+                        id="columnid6"
+                        width="7rem"
+                        hAlign="Center"
+                    >
+                        <Label
+                            text="Status"
+                            design="Bold"
+                        />
+                    </Column>
+                    <Column
+                        id="columnid7"
+                        width="7rem"
+                        hAlign="Center"
+                    >
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <Text text="{jsonNMSummaryModel>NmNumber}" />
+                        <Text text="{jsonNMSummaryModel>Material}" />
+                        <Text text="{jsonNMSummaryModel>Plant}" />
+                        <Text text="{
+  path: 'jsonNMSummaryModel>NmDate',
+  type: 'sap.ui.model.type.Date',
+  formatOptions: { pattern: 'dd/MM/yyyy' }
+}" />
+                        <Text text="{jsonNMSummaryModel>Sku}" />
+                        <Text text="{jsonNMSummaryModel>Line}"/>
+                        <Text
+                            text="{ path: 'jsonNMSummaryModel>Status', formatter: '.formatter.formatStatus' }"
+                        />
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </ScrollContainer>
+    </Panel>
+</core:FragmentDefinition>

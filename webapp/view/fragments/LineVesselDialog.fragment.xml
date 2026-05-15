@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<TableSelectDialog items="{path: 'jsonLineVesselModel>/'}" noDataText="No Data" liveChange="onSearchLineVesselDialog" title="Line Vessel List"
+		confirm="onPressLineDialogLineItem" contentWidth="60%">
+		<columns>
+			<Column hAlign="Center">
+				<Label design="Bold" text="Line"/>
+			</Column>
+			<Column hAlign="Left">
+				<Label text="Vessel" design="Bold"/>
+			</Column> 
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{jsonLineVesselModel>Line}"/>
+					<Text text="{jsonLineVesselModel>Vessel}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</TableSelectDialog>
+</core:FragmentDefinition>

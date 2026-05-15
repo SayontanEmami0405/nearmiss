@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<TableSelectDialog items="{path: 'jsonMatCodeModel>/'}" noDataText="No Data" liveChange="onSearchMatCodeDialog" title="Material Code List"
+		confirm="onPressMatCodeDialogLineItem" contentWidth="60%">
+		<columns>
+			<Column hAlign="Center">
+				<Label design="Bold" text="Material Code"/>
+			</Column>
+			<Column hAlign="Center">
+				<Label text="Material Description" design="Bold"/>
+			</Column>
+			<Column hAlign="Center">
+				<Label text="SKU" design="Bold"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{jsonMatCodeModel>MatCode}"/>
+					<Text text="{jsonMatCodeModel>MatDes}"/>
+					<Text text="{jsonMatCodeModel>Sku}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</TableSelectDialog>
+</core:FragmentDefinition>

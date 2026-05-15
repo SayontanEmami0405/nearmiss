@@ -1,0 +1,106 @@
+<mvc:View
+    controllerName="com.emami.nearmiss.controller.Initiator"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    displayBlock="true"
+>
+    <Page
+        id="pageInitiator"
+        title="Near Miss Form"
+        showHeader="true"
+    >
+        <!-- <headerContent>
+            <Button
+                icon="sap-icon://log"
+                text="Logout"
+                press="onLogout"
+                type="Reject" />
+        </headerContent> -->
+        <content>
+            <IconTabBar>
+                <items>
+                    <IconTabFilter
+                        icon="sap-icon://customer"
+                        text="Initiator"
+                        iconColor="Neutral"
+                    >
+                        <core:Fragment
+                            fragmentName="com.emami.nearmiss.view.fragments.SummaryDialog"
+                            type="XML"
+                        />
+
+                        <Bar>
+                            <contentRight>
+                                <Button
+                                    text="Clear"
+                                    type="Emphasized"
+                                    press="onPressClear"
+                                />
+                            </contentRight>
+                        </Bar>
+                        <core:Fragment
+                            fragmentName="com.emami.nearmiss.view.fragments.BasicDetails"
+                            type="XML"
+                        />
+
+                        <!-- <core:Fragment
+                            fragmentName="com.emami.cqachecklist.zcqachecklist.view.fragments.Checklist"
+                            type="XML"
+                        /> -->
+                        <!-- <core:Fragment
+                            fragmentName="com.emami.nearmiss.view.fragments.Attachments"
+                            type="XML"
+                            visible="{jsonCentralModel>/Visible/ShowAttachFrag}"
+                        /> -->
+                        <VBox
+                            visible="{jsonCentralModel>/Visible/ShowAttachFrag}"
+                        >
+                            <core:Fragment
+                                fragmentName="com.emami.nearmiss.view.fragments.Attachments"
+                                type="XML"
+                            />
+                        </VBox>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+        <footer>
+            <Bar>
+                <contentMiddle>
+                    <Button
+                        type="Emphasized" 
+                        text="Draft Save"
+                        press="onSaveNearMiss"
+                        visible="{jsonCentralModel>/Visible/InitiatorSaveBtn}"
+                    />
+                    <Button
+                        type="Accept"
+                        id="btnFinalSubmit"
+                        text="Final Submission"
+                        press="onPressInitateApproval"
+                        visible="{jsonCentralModel>/Visible/InitiatorInitiateBtn}"
+                    />
+                    <Button
+                        text="Go to Report"
+                        press="onGoToReport"
+                        type="Emphasized"
+                    />
+                    <Button
+                        text="Print"
+                        type="Emphasized"
+                        press="onPressPrint"
+                        visible="{jsonCentralModel>/Visible/printBtn}"
+                    />
+
+                    <!-- <Button
+                        text="Delete"
+                        type="Reject" press="onPressDeleteItem"
+                        visible="{jsonCentralModel>/Visible/InitiatorDeleteBtn}" -->
+                    <!-- /> -->
+                </contentMiddle>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

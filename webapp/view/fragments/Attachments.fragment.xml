@@ -1,0 +1,111 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+>
+    <Label
+        text="Attachements"
+        class="sapUiSmallMarginBegin sapUiSmallMarginTop textBold"
+        design="Bold"
+    />
+    <Panel>
+        <!-- <u:FileUploader
+            id="fileupload"
+            uploadUrl="/sap/opu/odata/sap/ZPP_ESCALATION_MATRIX_SRV/ZfileuploadSet"
+            fileType="pdf,txt,jpg,jpeg,xlsx"
+            uploadComplete="handleUploadComplete"
+            tooltip="Upload your file to the local server"
+            visible="{jsonCentralModel>/Visible/FileUploaderControl}"
+        />
+        <Button
+            text="Upload File"
+            press="OnFileUpload"
+            type="Emphasized"
+            visible="{jsonCentralModel>/Visible/UploadFileBtn}"
+        /> -->
+        <u:FileUploader
+            id="fileupload"
+            uploadComplete="handleUploadComplete"
+            tooltip="Upload your file to the local server"
+            visible="{jsonCentralModel>/Visible/FileUploaderControl}"
+        />
+        <Button
+            id="filebutton"
+            text="UploadFile"
+            press="OnFileUpload"
+            type="Emphasized"
+            visible="{jsonCentralModel>/Visible/UploadFileBtn}"
+        />
+        <Table
+            id="Tablefile"
+            items="{path: 'jsonAttachmentListModel>/'}"
+            mode="None"
+        >
+            <columns>
+                <Column hAlign="Center">
+                    <Label
+                        text="S.No"
+                        design="Bold"
+                    />
+                </Column>
+                <Column hAlign="Center">
+                    <Label
+                        text="NmNumber"
+                        design="Bold"
+                    />
+                </Column>
+                <Column hAlign="Center">
+                    <Label
+                        text="File Name"
+                        design="Bold"
+                    />
+                </Column>
+                <Column hAlign="Center">
+                    <Label
+                        text="File Type"
+                        design="Bold"
+                    />
+                </Column>
+                <Column hAlign="Center">
+                    <Label
+                        text="Uploaded By"
+                        design="Bold"
+                    />
+                </Column>
+                <Column hAlign="Center">
+                    <Label
+                        text="Download"
+                        design="Bold"
+                    />
+                </Column>
+                <Column
+                    hAlign="Center"
+                    visible="{jsonCentralModel>/Visible/AttachementDeleteBtn}"
+                >
+                    <Label
+                        text="Delete"
+                        design="Bold"
+                    />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Text text="{jsonAttachmentListModel>SerialNum}" />
+                    <Text text="{jsonAttachmentListModel>NmNumber}" />
+                    <Text text="{jsonAttachmentListModel>FileName}" />
+                    <Text text="{jsonAttachmentListModel>Filetype}" />
+                    <Text text="{jsonAttachmentListModel>UploadedBy}" />
+                    <Button
+                        icon="sap-icon://download"
+                        press="onPressDownloadFile"
+                    />
+                    <Button
+                        icon="sap-icon://delete"
+                        press="onPressDeleteFile"
+                        visible="{jsonCentralModel>/Visible/AttachementDeleteBtn}"
+                    />
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+</core:FragmentDefinition>

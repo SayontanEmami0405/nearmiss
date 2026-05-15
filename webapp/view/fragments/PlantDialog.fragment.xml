@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<TableSelectDialog items="{path: 'jsonPlantListModel>/'}" noDataText="No Data" liveChange="onSearchPlantDialog" title="Plant List"
+		confirm="onPressPlantDialogLineItem" contentWidth="60%">
+		<columns>
+			<Column hAlign="Center">
+				<Label design="Bold" text="Plant Code"/>
+			</Column>
+			<Column hAlign="Left">
+				<Label text="Plant Name" design="Bold"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{jsonPlantListModel>Plant_Code}"/>
+					<Text text="{jsonPlantListModel>Plant_Name}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</TableSelectDialog>
+</core:FragmentDefinition>

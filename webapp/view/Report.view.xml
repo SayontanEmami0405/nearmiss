@@ -1,0 +1,114 @@
+<mvc:View
+    controllerName="com.emami.nearmiss.controller.Report"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+
+    <Page id="Report" showHeader="false">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <HBox justifyContent="SpaceBetween" wrap="Wrap" alignItems="Center">
+
+                    <!-- Plant -->
+                    <Label text="Plant:" class="sapUiTinyMarginTop"/>
+                    <Input
+                        id="idInputPlant1"
+                        showValueHelp="true"
+                        valueHelpOnly="true"
+                        valueHelpRequest="onValueHelpPlant"
+                        value="{jsonCentralModel>/Data/ReportData/Plant}" />
+
+                    <!-- Year -->
+                    <Label text="Year:" class="sapUiTinyMarginTop"/>
+                    <Select id="cbYear" forceSelection="true">
+                        <core:Item key="" text=""/>
+                        <core:Item key="2021" text="2021"/>
+                        <core:Item key="2022" text="2022"/>
+                        <core:Item key="2023" text="2023"/>
+                        <core:Item key="2024" text="2024"/>
+                        <core:Item key="2025" text="2025"/>
+                        <core:Item key="2026" text="2026"/>
+                    </Select>
+
+                    <!-- Probable Risk -->
+                    <Label text="Probable Risk:" class="sapUiTinyMarginTop"/>
+                    <Select
+                        id="idProbableRisk1"
+                        selectedKey="{jsonCentralModel>/Data/FormData/ProbableRisk}"
+                        editable="{jsonCentralModel>/Editable/ProbableRisk}">
+                        <core:Item key="" text=""/>
+                        <core:Item key="Incident" text="Incident"/>
+                        <core:Item key="Customer Complaint" text="Customer Complaint"/>
+                        <core:Item key="Regulatory Issue" text="Regulatory Issue"/>
+                    </Select>
+
+                    <!-- CAPA Status -->
+                    <Label text="CAPA Status:" class="sapUiTinyMarginTop"/>
+                    <Select id="cbCapa" forceSelection="true">
+                        <core:Item key="" text=""/>
+                        <core:Item key="Open" text="Open"/>
+                        <core:Item key="Close" text="Close"/>
+                    </Select>
+
+                    <!-- Buttons -->
+                    <Button text="Search" press="onSearch"/>
+                    <Button
+                        text="Export"
+                        icon="sap-icon://excel-attachment"
+                        press="onExport"/>
+
+                </HBox>
+            </VBox>
+            <Table
+    id="idReportTable"
+    items="{jsonReportListModel>/}">
+    
+    <columns>
+    <Column><Text text="NM Number"/></Column>
+        <Column><Text text="Unit"/></Column>
+        <Column><Text text="Date of NM"/></Column>
+        <Column><Text text="Name of Product"/></Column>
+        <Column><Text text="SKU"/></Column>
+        <Column><Text text="NM"/></Column>
+        <Column><Text text="NM Details"/></Column>
+        <Column><Text text="Probable Risk"/></Column>
+        <Column><Text text="Quantity"/></Column>
+        <Column><Text text="Root Cause"/></Column>
+        <Column><Text text="Corrective Action"/></Column>
+        <Column><Text text="Preventive Action"/></Column>
+        <Column><Text text="CAPA Status"/></Column>
+    </columns>
+
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="{jsonReportListModel>NmNumber}"/>
+                <Text text="{jsonReportListModel>Plant}"/>
+                <Text
+    text="{
+        path: 'jsonReportListModel>NmDate',
+        type: 'sap.ui.model.type.Date',
+        formatOptions: {
+            pattern: 'dd/MM/yyyy'
+        }
+    }"/>
+                <Text text="{jsonReportListModel>Material}"/>
+                <Text text="{jsonReportListModel>Sku}"/>
+                <Text text="{jsonReportListModel>Material}"/>
+                <Text text="{jsonReportListModel>NmDetHeading}"/>
+                <Text text="{jsonReportListModel>ProbableRisk}"/>
+                <Text text="{jsonReportListModel>Quantity}"/>
+                <Text text="{jsonReportListModel>RootCause}"/>
+                <Text text="{jsonReportListModel>CorrectiveAction}"/>
+                <Text text="{jsonReportListModel>PreventiveAction}"/>
+                <Text text="{jsonReportListModel>CapaStatus}"/>
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+
+        </content>
+    </Page>
+
+</mvc:View>

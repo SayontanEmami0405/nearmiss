@@ -1,0 +1,192 @@
+{
+  "_version": "1.17.0",
+  "sap.app": {
+    "id": "com.emami.nearmiss",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.19.0",
+      "toolsId": "912d92aa-c582-49f2-a36b-0efe2dccb7a3"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZNEAR_MISS_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "znearmiss-manage": {
+          "semanticObject": "znearmiss",
+          "action": "manage",
+          "title": "{{znearmiss-manage.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.71.67",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.export": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.emami.nearmiss.i18n.i18n" 
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "useBatch": false,
+          "defaultUpdateMethod": "PUT"
+        } 
+      },
+      "jsonPlantListModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonMatCodeModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+       "jsonDropDown": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonLineVesselModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonNMSummaryModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonItemListModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonAttachmentListModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "jsonReportListModel": {
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.emami.nearmiss.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteHome",
+          "pattern": ":?query:",
+          "target": [
+            "TargetHome"
+          ]
+        },
+        {
+          "name": "RouteInitiator",
+          "pattern": "Initiator",
+          "target": [
+            "TargetInitiator"
+          ]
+        },
+        {
+          "name": "RouteReport",
+          "pattern": "Report",
+          "target": [
+            "TargetReport"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetHome": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Home",
+          "viewName": "Home"
+        },
+        "TargetInitiator": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Initiator",
+          "viewName": "Initiator"
+        },
+        "TargetReport": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Report",
+          "viewName": "Report"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.emami.nearmiss.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App" 
+    }
+  }
+}

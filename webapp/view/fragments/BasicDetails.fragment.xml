@@ -1,0 +1,529 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+>
+    <Label
+        text="Basic Details"
+        class="sapUiSmallMarginBegin sapUiSmallMarginTop textBold"
+        design="Bold"
+    />
+    <Panel>
+        <f:SimpleForm
+            id="intiatorBasicDetails"
+            layout="ResponsiveGridLayout"
+            labelSpanXL="6"
+            labelSpanL="6"
+            labelSpanM="6"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="0"
+            emptySpanL="0"
+            emptySpanM="0"
+            emptySpanS="0"
+            columnsXL="2"
+            columnsL="2"
+            columnsM="3"
+        >
+            <core:Title text="" />
+
+            <Label
+                text="NM Number"
+                design="Bold"
+                class="sapUiTinyMarginTop"
+            />
+            <Input
+                id="idNMNumber"
+                value="{jsonCentralModel>/Data/FormData/NmNumber}"
+                editable="false"
+                tooltip="{jsonCentralModel>/Data/FormData/NmNumber}"
+            />
+
+            <Label
+                text="Plant"
+                design="Bold"
+                class="sapUiTinyMarginTop"
+                required="true"
+            />
+            <Input
+                id="idInputPlant"
+                showValueHelp="true"
+                valueHelpOnly="true"
+                valueHelpRequest="onValueHelpPlant"
+                value="{jsonCentralModel>/Data/FormData/Plant}"
+                editable="{jsonCentralModel>/Editable/Plant}"
+            />
+
+            <Label
+                text="NM Date"
+                design="Bold"
+                class="sapUiTinyMarginTop"
+                required="true"
+            />
+            <DatePicker
+                value="{path : 'jsonCentralModel>/Data/FormData/NmDate', 
+                type: 'sap.ui.model.type.Date', 
+                formatOptions: { pattern: 'dd/MM/yyyy', UTC: true } }" 
+                valueFormat="dd.MM.yyyy"
+                editable="{jsonCentralModel>/Editable/NmDate}"
+            />
+
+            <Label
+                text="Material"
+                design="Bold"
+                class="sapUiTinyMarginTop"
+                required="true"
+            />
+            <Input
+                id="idInputMaterial"
+                showValueHelp="true"
+                valueHelpOnly="true"
+                valueHelpRequest="onValueHelpReqMatCode"
+                value="{jsonCentralModel>/Data/FormData/Material}"
+                editable="{jsonCentralModel>/Editable/Material}"
+            />
+
+            <Label
+                text="Material Description"
+                design="Bold"
+                class="sapUiTinyMarginTop"
+            />
+            <Input
+                id="idInputMaterialDes"
+                value="{jsonCentralModel>/Data/FormData/MatDes}"
+                editable="{jsonCentralModel>/Editable/MatDes}"
+            />
+
+            <Label
+                text="SKU"
+                design="Bold"
+                class="sapUiTinyMarginTop"
+            />
+            <Input
+                id="idInputSKU"
+                value="{jsonCentralModel>/Data/FormData/Sku}"
+                editable="{jsonCentralModel>/Editable/Sku}"
+            />
+
+            <Label
+                text="Line"
+                design="Bold"
+                class="sapUiTinyMarginTop"
+            />
+            <Input
+                id="idInputLine"
+                value="{jsonCentralModel>/Data/FormData/Line}"
+                editable="{jsonCentralModel>/Editable/Line}"
+                showValueHelp="true"
+                valueHelpOnly="true"
+                valueHelpRequest="onValueHelpReqLineVessel"
+            />
+
+            <Label
+                text="Vessel Name"
+                design="Bold"
+                class="sapUiTinyMarginTop"
+            />
+            <Input
+                id="idInputVesselName"
+                value="{jsonCentralModel>/Data/FormData/VesselName}"
+                editable="{jsonCentralModel>/Editable/VesselName}"
+            />
+            <core:Title text="" />
+        </f:SimpleForm>
+    </Panel>
+    <!-- Section: NM Details -->
+    <Label
+        text="NM Details"
+        class="sapUiSmallMarginBegin sapUiSmallMarginTop textBold"
+        design="Bold"
+    />
+
+    <Panel expandable="false">
+        <f:SimpleForm
+            id="initiatorNMDetails"
+            layout="ResponsiveGridLayout"
+            labelSpanXL="6"
+            labelSpanL="6"
+            labelSpanM="6"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="0"
+            emptySpanL="0"
+            emptySpanM="0"
+            emptySpanS="0"
+            columnsXL="2"
+            columnsL="2"
+            columnsM="3"
+        >
+            <core:Title text="" />
+
+            <!-- Sort Text (Dropdown) -->
+            <Label
+                text="Sort Text (Heading)"
+                required="true"
+                class="sapUiTinyMarginTop"
+            />
+            <Select
+                selectedKey="{jsonCentralModel>/Data/FormData/NmDetHeading}"
+                items="{jsonDropDown>/STEXT}"
+            >
+                <core:Item
+                    key="{jsonDropDown>ZdropVal}"
+                    text="{jsonDropDown>ZdropVal}"
+                />
+            </Select>
+            <!-- <Select
+                id="idSortText"
+                selectedKey="{jsonCentralModel>/Data/FormData/NmDetHeading}"
+                editable="{jsonCentralModel>/Editable/NmDetHeading}"
+            >
+                <core:Item
+                    key="blank"
+                    text=""
+                />
+                <core:Item
+                    key="Electrical"
+                    text="Electrical"
+                />
+                <core:Item
+                    key="Mechanical"
+                    text="Mechanical"
+                />
+                <core:Item
+                    key="Fire"
+                    text="Fire"
+                />
+                <core:Item
+                    key="Other"
+                    text="Other"
+                />
+            </Select> -->
+
+            <!-- NM Details Brief -->
+            <Label
+                text="NM Details Brief"
+                required="true"
+                class="sapUiTinyMarginTop"
+            />
+            <TextArea
+                id="idNMDetails"
+                value="{jsonCentralModel>/Data/FormData/NmDetBrief}"
+                editable="{jsonCentralModel>/Editable/NmDetBrief}"
+                placeholder="Describe the near miss (max 500 characters)"
+                maxLength="500"
+                rows="5"
+                width="100%"
+            />
+
+            <!-- Attachment -->
+            <!-- <Label text="Attachment (Optional)" class="sapUiTinyMarginTop"/>
+            <u:FileUploader
+            id="fileupload"
+            uploadComplete="handleUploadComplete"
+            tooltip="Attach supporting documents or images"
+            visible="{jsonCentralModel>/Visible/FileUploaderControl}"
+        />
+        <Button
+            id="filebutton"
+            text="UploadFile"
+            press="OnFileUpload"
+            type="Emphasized"
+            visible="{jsonCentralModel>/Visible/UploadFileBtn}"
+        /> -->
+
+            <core:Title text="" />
+            <!-- Probable Risk -->
+            <Label
+                text="Probable Risk"
+                required="true"
+                class="sapUiTinyMarginTop"
+            />
+            <Select
+                selectedKey="{jsonCentralModel>/Data/FormData/ProbableRisk}"
+                items="{jsonDropDown>/PRISK}"
+            >
+                <core:Item
+                    key="{jsonDropDown>ZdropVal}"
+                    text="{jsonDropDown>ZdropVal}"
+                />
+            </Select>
+            <!-- <Select
+                id="idProbableRisk"
+                selectedKey="{jsonCentralModel>/Data/FormData/ProbableRisk}"
+                editable="{jsonCentralModel>/Editable/ProbableRisk}"
+            >
+                <core:Item
+                    key="blank"
+                    text=""
+                />
+                <core:Item
+                    key="Incident"
+                    text="Incident"
+                />
+                <core:Item
+                    key="Customer Complaint"
+                    text="Customer Complaint"
+                />
+                <core:Item
+                    key="Regulatory Issue"
+                    text="Regulatory Issue"
+                />
+            </Select> -->
+
+            <Label
+                text="Affected Area"
+                required="true"
+                class="sapUiTinyMarginTop"
+            /> 
+            <Select
+                selectedKey="{jsonCentralModel>/Data/FormData/AffectedArea}"
+                items="{jsonDropDown>/AFAREA}"
+            >
+                <core:Item
+                    key="{jsonDropDown>ZdropVal}"
+                    text="{jsonDropDown>ZdropVal}"
+                />
+            </Select>
+            <!-- <Select
+                id="idAffectedArea"
+                selectedKey="{jsonCentralModel>/Data/FormData/AffectedArea}"
+                editable="{jsonCentralModel>/Editable/AffectedArea}"
+            >
+                <core:Item
+                    key="blank"
+                    text=""
+                />
+                <core:Item
+                    key="Production"
+                    text="Production"
+                />
+                <core:Item
+                    key="Manufacturing"
+                    text="Manufacturing"
+                />
+                <core:Item
+                    key="Store"
+                    text="Store"
+                />
+            </Select> -->
+
+            <!-- Root Cause -->
+            <Label
+                text="Root Cause"
+                required="true"
+                class="sapUiTinyMarginTop"
+            />
+            <!-- <VBox> -->
+            <TextArea
+                id="idRootCause"
+                value="{jsonCentralModel>/Data/FormData/RootCause}"
+                editable="{jsonCentralModel>/Editable/RootCause}"
+                placeholder="Enter root cause (max 200 characters)"
+                maxLength="200"
+                rows="3"
+                width="100%"
+            />
+            <!-- <Label text="Attachment (Optional)" class="sapUiTinyMarginTop"/>
+            <u:FileUploader
+                id="idRootCauseAttach"
+                name="rootCauseFile"
+                width="100%"
+                tooltip="Attach supporting file (PDF/Image)"
+                uploadComplete="handleUploadComplete" />
+                
+                <Button
+                    id="filebutton1"
+                    text="UploadFile"
+                    press="OnFileUpload"
+                    type="Emphasized"
+                    visible="{jsonCentralModel>/Visible/UploadFileBtn}"
+                /> -->
+            <!-- </VBox> -->
+            <Label
+                text="Quantity (QTY)"
+                required="true"
+                class="sapUiTinyMarginTop"
+            />
+            <Input
+                id="idQty"
+                value="{jsonCentralModel>/Data/FormData/Quantity}"
+                editable="{jsonCentralModel>/Editable/Quantity}"
+                placeholder="Enter quantity (max 20 characters)"
+                maxLength="20"
+                width="100%"
+            />
+        </f:SimpleForm>
+    </Panel>
+
+    <!-- ========================= -->
+    <!-- Section: CAPA Details -->
+    <!-- ========================= -->
+    <HBox>
+        <Label
+            text="CAPA (Corrective / Preventive Action)"
+            design="Bold"
+            class="sapUiTinyMarginTop"
+        />
+
+        <RadioButtonGroup
+            id="idCapaType"
+            columns="2"
+            select=".onCAPATypeSelect"
+        >
+            <buttons>
+                <RadioButton text="Corrective Action">
+                    <customData>
+                        <core:CustomData
+                            key="type"
+                            value="C"
+                        />
+                    </customData>
+                </RadioButton>
+                <RadioButton text="Preventive Action">
+                    <customData>
+                        <core:CustomData
+                            key="type"
+                            value="P"
+                        />
+                    </customData>
+                </RadioButton>
+            </buttons>
+        </RadioButtonGroup>
+    </HBox>
+
+    <Table
+        id="idCapaTable"
+        items="{path:'jsonCentralModel>/Data/VisibleCapaList'}"
+    >
+        <headerToolbar>
+            <Toolbar>
+                <Title text="Action Items" />
+                <ToolbarSpacer />
+                <Button
+                    icon="sap-icon://add"
+                    text="Add Row"
+                    press=".onAddCAPARow"
+                    visible="{jsonCentralModel>/Visible/AddLineItem}"
+                />
+            </Toolbar>
+        </headerToolbar>
+
+        <columns>
+            <Column>
+                <Text text="Action Detail" />
+            </Column>
+            <Column>
+                <Text text="Responsibility" />
+            </Column>
+            <Column>
+                <Text text="Target Date" />
+            </Column>
+            <Column>
+                <Text text="Status" />
+            </Column>
+            <Column>
+                <Text text="" />
+            </Column>
+        </columns>
+
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Input
+                        value="{jsonCentralModel>Actionv}"
+                        editable="{jsonCentralModel>/Editable/Actionv}"
+                    />
+                    <Input
+                        value="{jsonCentralModel>Responsibility}"
+                        editable="{jsonCentralModel>/Editable/Responsibility}"
+                    />
+                    <DatePicker
+                        value="{path:'jsonCentralModel>TargetDate', type:'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy', UTC: true }}"
+                        editable="{jsonCentralModel>/Editable/TargetDate}"
+                    />
+                    <Select
+                        selectedKey="{jsonCentralModel>Status}"
+                        change="onStatusChange"
+                        editable="{jsonCentralModel>/Editable/Status}"
+                    >
+                        <core:Item
+                            key="Open"
+                            text="Open"
+                        />
+                        <core:Item
+                            key="Close"
+                            text="Close"
+                        />
+                    </Select>
+                    <Button
+                        icon="sap-icon://delete"
+                        type="Reject"
+                        visible="{jsonCentralModel>/Visible/RowDel}"
+                        press=".onDeleteCAPARow"
+                    />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+
+    <Label
+        text="Disposal / Scrap Details"
+        class="sapUiSmallMarginBegin sapUiSmallMarginTop textBold"
+        design="Bold"
+    />
+    <Panel expandable="false">
+        <f:SimpleForm
+            id="initiatorNMDExtra"
+            layout="ResponsiveGridLayout"
+            labelSpanXL="6"
+            labelSpanL="6"
+            labelSpanM="6"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="0"
+            emptySpanL="0"
+            emptySpanM="0"
+            emptySpanS="0"
+            columnsXL="2"
+            columnsL="2"
+            columnsM="3"
+        >
+            <Label
+                text="If Disposed / Scrapped, Total Quantity Scrapped"
+                class="sapUiTinyMarginTop"
+            />
+            <Input
+                value="{jsonCentralModel>/Data/FormData/QuanScrapped}"
+                editable="{jsonCentralModel>/Editable/QuanScrapped}"
+                maxLength="100"
+                placeholder="Enter total scrapped quantity"
+            />
+
+            <Label
+                text="Way of Disposal / Scrap"
+                class="sapUiTinyMarginTop"
+            />
+            <Input
+                value="{jsonCentralModel>/Data/FormData/DisposalWay}"
+                editable="{jsonCentralModel>/Editable/DisposalWay}"
+                maxLength="200"
+                placeholder="Describe disposal method"
+            />
+
+            <Label
+                text="Cost (Amount)"
+                class="sapUiTinyMarginTop"
+            />
+            <Input
+                value="{jsonCentralModel>/Data/FormData/Cost}"
+                editable="{jsonCentralModel>/Editable/Cost}"
+                type="Number"
+                maxLength="10"
+                placeholder="Enter cost in words"
+            />
+            <core:Title text="" />
+        </f:SimpleForm>
+    </Panel>
+</core:FragmentDefinition>

@@ -177,7 +177,7 @@ onExport: function () {
                         formatOptions: {
                             pattern: "dd/MM/yyyy"
                         }
-            },
+                   },
                     { label: "Product / Area", property: "Material" },
                     { label: "SKU", property: "Sku" },
                     { label: "NM Details", property: "NmDetHeading" },
